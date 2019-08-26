@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>用户登陆</title>
+</head>
+<body>
+<form id="reg">
+    <h1>用户登陆</h1>
+    <p>请输入用户名:</p>
+    <p><input  name="username"></p>
+    <p>请输入密码:</p>
+    <p><input  name="password"></p>
+    <p><input  type="button" value="登陆" id="btn-reg"></p>
+</form>
+<script src="jquery-3.4.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $("#btn-reg").click(function () {
+        $.ajax({
+            "url":"/login",
+            "data":$("#reg").serialize(),
+            "type":"post",
+            "dataType":"json",
+            "success":function (json) {
+                if (json.state== 1){
+                    alert("登陆成功");
+                }else {
+                    alert("登陆失败"+json.message);
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
